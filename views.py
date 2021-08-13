@@ -40,6 +40,7 @@ def signup():
         return redirect(url_for('login'))         
     else:
         form = RegisterForm()
+        return render_template('signup.html', form=form) # przekazuje formularz do templatki
 
 
 @app.route('/logout')

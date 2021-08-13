@@ -10,8 +10,6 @@ from models import User
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
-    # return db.session.query(User).get(user_id)
-
 
 class MyModelView(ModelView):
     def is_accessible(self):
@@ -26,8 +24,6 @@ class MyAdminIndexView(AdminIndexView):
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('login'))
-
-
 
 # ADMIN
 # set optional bootswatch theme
