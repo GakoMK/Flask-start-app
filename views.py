@@ -9,7 +9,7 @@ from forms import LoginForm, RegisterForm
 
 @app.route('/')
 @login_required
-def homepage():
+def index():
     return render_template('index.html', title="Home page")
 
 
@@ -20,7 +20,10 @@ def login():
         if form.validate():
             login_user(form.user, remember=form.remember.data)
             flash("Successfully logged in as %s." % form.user.email, "success")
-            return redirect(url_for("index"))
+            return redirect(url_for('index'))
+        else:
+            flash('Try again!')
+            return render_template('login.html', form=form) # przekazuje formularz do templatki
     else:
         form = LoginForm()
         return render_template('login.html', form=form) # przekazuje formularz do templatki
@@ -36,7 +39,6 @@ def signup():
         flash('New user has been created!')
         return redirect(url_for('login'))         
     else:
-        flash('sdgsdfg')
         form = RegisterForm()
 
 
@@ -44,7 +46,7 @@ def signup():
 def logout():
     logout_user()
     flash('You have been logged out.', 'success')
-    return redirect(request.args.get('next') or url_for('homepage'))        
+    return redirect(request.args.get('next') or url_for('index'))        
 
 
 @app.before_request

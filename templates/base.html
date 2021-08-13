@@ -7,54 +7,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %} - My Webpage</title>
-    <!-- minified jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <!-- minified Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
-    <!-- minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
     {% block html_head %}{% endblock %}
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <ul class="nav">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Home</a>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a></li>
-  
-              <li class="nav-item dropdown ml-md-auto">
-                {% if current_user.is_authenticated %}
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">{{ current_user.email }}</a>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
-                  </div>
-                {% endif %}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link active" href="{{ url_for('index') }}">Home</a></li>
+          {% if current_user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.index') }}">Admin</a></li>
+          {% endif %}
+          {% if not current_user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a></li>
+          {% endif %}
 
-    <!-- <div class="container-fluid"> -->
-    <div class="container">
-        {% for category, message in get_flashed_messages(with_categories=true) %}
-        <div id="zwinAlert-{{ loop.index }}" class="alert alert-{{ category }} alert-dismissible mt-1 mb-1">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ message | safe }}
-        </div>
-        {% endfor %}
+          <li class="nav-item dropdown ml-md-auto">
+            {% if current_user.is_authenticated %}
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">{{ current_user.email }}</a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a> 
+              </div>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
+
+  <!-- <div class="container-fluid"> -->
+  <div class="container">
+      {% for category, message in get_flashed_messages(with_categories=true) %}
+      <div id="zwinAlert-{{ loop.index }}" class="alert alert-{{ category }} alert-dismissible mt-1 mb-1">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{ message | safe }}
+      </div>
+      {% endfor %}
+  </div>
 
 
     
-    {% block content %}{% endblock %}
+  {% block content %}{% endblock %}
  
 
+  <!-- minified jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- minified Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!-- minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
