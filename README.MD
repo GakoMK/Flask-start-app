@@ -1,5 +1,4 @@
 # Flask starter
-
 Used in the project:<br/>
 - flask_admin
 - flask_login
@@ -7,8 +6,10 @@ Used in the project:<br/>
 - flask_sqlalchemy
 <br/>
 <br/>
-**This project was created while learning Flask, maybe it will be useful to someone.**<br/><br/>
 
+**This project was created while learning Flask, maybe it will be useful to someone.**
+
+<br/><br/>
 
 ## How to start:
 1. Create folder 'data'
