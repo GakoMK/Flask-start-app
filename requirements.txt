@@ -1,0 +1,7 @@
+Flask==1.1.2
+Flask-migrate==2.7.0
+Flask-Bootstrap==3.3.7.1
+wtforms==2.2.1
+flask-login
+python-slugify
+# pip install -r requirements.txt

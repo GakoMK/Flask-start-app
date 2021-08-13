@@ -1,0 +1,46 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Demo App
+{% endblock %}
+
+{% block styles %}
+  {{super()}}
+  <link rel="stylesheet" href="{{url_for('.static', filename='starter-template.css')}}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="nav">
+            <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+            {% if not current_user.is_authenticated %}
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a></li>
+            {% endif %}
+
+            <li class="nav-item dropdown ml-md-auto">
+              {% if current_user.is_authenticated %}
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">{{ current_user.email }}</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a> 
+                  <!-- admin.index -->
+                </div>
+              {% endif %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <p class="lead">Hi {{ current_user.email }}! <br/>
+          Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.
+        </p>
+      </div>
+
+    </div><!-- /.container -->
+{% endblock %}
