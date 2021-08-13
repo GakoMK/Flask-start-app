@@ -1,8 +1,9 @@
 # Flask starter
 
 Used in the project:<br/>
-- flask-admin
-- flask-migrate
+- flask_admin
+- flask_login
+- flask_migrate
 - flask_sqlalchemy
 <br/>
 <br/>
