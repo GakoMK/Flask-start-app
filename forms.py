@@ -20,6 +20,6 @@ class LoginForm(FlaskForm):
         return True
 
 class RegisterForm(FlaskForm):
-    email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
     name = StringField('name', validators=[InputRequired(), Length(min=4, max=15)])
+    email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])  
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])

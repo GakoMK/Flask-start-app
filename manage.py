@@ -27,12 +27,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True)
     password_hash = db.Column(db.String(255))
-    name = db.Column(db.String(64))
-    slug = db.Column(db.String(64), unique=True)
     active = db.Column(db.Boolean, default=True)
-    created_timestamp = db.Column(db.DateTime, default=datetime.datetime.now)
-
-
 
 if __name__ == '__main__':
     manager.run()

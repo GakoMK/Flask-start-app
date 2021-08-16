@@ -33,7 +33,7 @@ def login():
 def signup():
     if request.method == "POST":
         form = RegisterForm(request.form)
-        new_user = User.create(email=form.email.data, password=form.password.data, name=form.name.data)
+        new_user = User.create(email=form.email.data, password=form.password.data)
         db.session.add(new_user)
         db.session.commit()
         flash('New user has been created!')
