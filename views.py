@@ -15,6 +15,8 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     if request.method == "POST":
         form = LoginForm(request.form)
         if form.validate():
@@ -22,10 +24,10 @@ def login():
             flash("Successfully logged in as %s." % form.user.email, "success")
             return redirect(url_for('index'))
         else:
-            return render_template('login.html', form=form) # przekazuje formularz do templatki
+            return render_template('login.html', form=form)
     else:
         form = LoginForm()
-        return render_template('login.html', form=form) # przekazuje formularz do templatki
+        return render_template('login.html', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])
