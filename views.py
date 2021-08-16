@@ -22,15 +22,14 @@ def login():
             flash("Successfully logged in as %s." % form.user.email, "success")
             return redirect(url_for('index'))
         else:
-            flash('Try again!')
             return render_template('login.html', form=form) # przekazuje formularz do templatki
     else:
         form = LoginForm()
         return render_template('login.html', form=form) # przekazuje formularz do templatki
 
 
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
+@app.route('/register', methods=['GET', 'POST'])
+def register():
     if request.method == "POST":
         form = RegisterForm(request.form)
         new_user = User.create(email=form.email.data, password=form.password.data)
@@ -40,7 +39,7 @@ def signup():
         return redirect(url_for('login'))         
     else:
         form = RegisterForm()
-        return render_template('signup.html', form=form) # przekazuje formularz do templatki
+        return render_template('register.html', form=form) # przekazuje formularz do templatki
 
 
 @app.route('/logout')
