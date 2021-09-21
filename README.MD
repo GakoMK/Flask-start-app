@@ -4,6 +4,7 @@ Used in the project:<br/>
 - flask_login
 - flask_migrate
 - flask_sqlalchemy
+- Bootstrap 4 (cdn)
 <br/>
 <br/>
 
@@ -20,3 +21,5 @@ manage.py db migrate
 manage.py db upgrade
 main.py
 ```
+A database with a sample user (pass: test) will be created.
+3. Run main.py
